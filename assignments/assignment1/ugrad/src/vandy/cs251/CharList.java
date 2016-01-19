@@ -13,16 +13,19 @@ public class CharList
      * The head of the list.
      */
     // TODO - you fill in here
+    private Node head;
 
     /**
      * The current size of the list.
      */
     // TODO - you fill in here
+    private int size;
 
     /**
      * Default value for elements in the list.
      */
     // TODO - you fill in here
+    private char defaultValue;
 
     /**
      * Constructs an list of the given size.
@@ -154,11 +157,13 @@ public class CharList
          * Value stored in the Node.
          */
 	// TODO - you fill in here
+        private char data;
 
         /**
          * Reference to the next node in the list.
          */
 	// TODO - you fill in here
+        private Node next;
 
         /**
          * Default constructor (no op).
@@ -178,6 +183,8 @@ public class CharList
          */
         Node(char value, Node prev) {
             // TODO - you fill in here
+            this.data = value;
+            this.next = prev;
         }
 
         /**
