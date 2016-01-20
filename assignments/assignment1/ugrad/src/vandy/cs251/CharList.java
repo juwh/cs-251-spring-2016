@@ -34,6 +34,10 @@ public class CharList
      */
     public CharList(int size) {
         // TODO - you fill in here.  Initialize the List
+        CharList list;
+        list = new CharList(size, this.defaultValue);
+        this.head = list.head;
+        this.size = list.size;
     }
 
     /**
@@ -46,6 +50,19 @@ public class CharList
      */
     public CharList(int size, char defaultValue) {
         // TODO - you fill in here
+        if (size < 0) {
+            throw new IndexOutOfBoundsException("Invalid size");
+        } else {
+            this.head = null;
+            this.size = size;
+            if (size > 0) {
+                this.head = new Node(defaultValue, null);
+                Node tmp = this.head;
+                for (int ii = 0; ii < size - 1; ii++) {
+                    tmp = new Node(defaultValue, tmp);
+                }
+            }
+        }
     }
 
     /**
@@ -55,6 +72,15 @@ public class CharList
      */
     public CharList(CharList s) {
         // TODO - you fill in here
+        this.size = s.size;
+        this.head = null;
+        Node tmp = s.head;
+        if (tmp != null) {
+            this.head = s.head;
+            while(tmp.next != null) {
+
+            }
+        }
     }
 
     /**
@@ -74,7 +100,7 @@ public class CharList
     public int size() {
         // TODO - you fill in here (replace return 0 with right
         // implementation).
-    	return 0;
+    	return this.size;
     }
 
     /**
@@ -147,6 +173,9 @@ public class CharList
      */
     private void rangeCheck(int index) {
         // TODO - you fill in here
+        if (index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
     }
 
     /**
@@ -176,6 +205,9 @@ public class CharList
          */
         Node(Node prev) {
             // TODO - you fill in here
+            prev.next = this;
+            this.data = defaultValue;
+            this.next = null;
         }
 
         /**
@@ -183,8 +215,9 @@ public class CharList
          */
         Node(char value, Node prev) {
             // TODO - you fill in here
+            prev.next = this;
             this.data = value;
-            this.next = prev;
+            this.next = null;
         }
 
         /**
