@@ -50,6 +50,8 @@ public class CharList
      */
     public CharList(int size, char defaultValue) {
         // TODO - you fill in here
+        this.defaultValue = defaultValue;
+
         if (size < 0) {
             throw new IndexOutOfBoundsException("Invalid size");
         } else {
@@ -73,10 +75,11 @@ public class CharList
     public CharList(CharList s) {
         // TODO - you fill in here
         this.size = s.size;
+        this.defaultValue = s.defaultValue;
         this.head = null;
         Node tmp = s.head;
         if (tmp != null) {
-            this.head = s.head;
+            this.head = new Node(tmp.data, null);
             Node cur = this.head;
             while(tmp.next != null) {
                 tmp = tmp.next;
@@ -122,12 +125,38 @@ public class CharList
      */
     public void resize(int size) {
         // TODO - you fill in here
+        Node end, erase;
+
         if (size < 0) {
             throw new IndexOutOfBoundsException("Invalid size");
         } else {
-            int sizeDiff = java.lang.Math.abs(this.size - size);
+            if (size < this.size) {
+                if (size == 0) {
+                    erase = this.head.next;
+                    head = null;
+                } else {
+                    end = this.seek(size - 1);
+                    erase = this.seek(size);
+                    end.next = null;
+                }
+                erase.prune();
+            }
+            if (size > this.size) {
+                if (this.size == 0) {
+                    this.head = new Node(this.defaultValue, null);
+                    end = this.head;
+                } else {
+                    end = this.seek(this.size - 1);
+                    end.next = new Node(this.defaultValue, end);
+                    end = end.next;
+                }
+                int addNum = size - this.size - 1;
+                for(int ii = 0; ii < addNum; ii++) {
+                    end.next = new Node(this.defaultValue, end);
+                    end = end.next;
+                }
+            }
             this.size = size;
-
         }
     }
 
@@ -185,7 +214,27 @@ public class CharList
     public int compareTo(CharList s) {
         // TODO - you fill in here (replace return 0 with right
         // implementation).
-	    return 0;
+        Node tmp1 = this.head;
+        Node tmp2 = s.head;
+        if (tmp1 != null && tmp2 != null) {
+            while(tmp1 != null && tmp2 != null) {
+                if (tmp1.data > tmp2.data) {
+                    return 1;
+                }
+                if (tmp1.data < tmp2.data) {
+                    return -1;
+                }
+                tmp1 = tmp1.next;
+                tmp2 = tmp2.next;
+            }
+        }
+        if (tmp1 == null && tmp2 == null) {
+            return 0;
+        } else if (tmp1 == null) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 
     /**
@@ -225,7 +274,9 @@ public class CharList
          */
         Node(Node prev) {
             // TODO - you fill in here
-            prev.next = this;
+            if (prev != null) {
+                prev.next = this;
+            }
             this.data = defaultValue;
             this.next = null;
         }
@@ -235,7 +286,9 @@ public class CharList
          */
         Node(char value, Node prev) {
             // TODO - you fill in here
-            prev.next = this;
+            if (prev != null) {
+                prev.next = this;
+            }
             this.data = value;
             this.next = null;
         }
