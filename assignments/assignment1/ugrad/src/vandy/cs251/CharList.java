@@ -35,7 +35,7 @@ public class CharList
     public CharList(int size) {
         // TODO - you fill in here.  Initialize the List
         CharList list;
-        list = new CharList(size, this.defaultValue);
+        list = new CharList(size, defaultValue);
         this.head = list.head;
         this.size = list.size;
     }
@@ -77,8 +77,11 @@ public class CharList
         Node tmp = s.head;
         if (tmp != null) {
             this.head = s.head;
+            Node cur = this.head;
             while(tmp.next != null) {
-
+                tmp = tmp.next;
+                cur.next = new Node(tmp.data, null);
+                cur = cur.next;
             }
         }
     }
@@ -91,7 +94,8 @@ public class CharList
     public Object clone() {
         // TODO - you fill in here (replace return null with right
         // implementation).
-	return null;
+        CharList copy = new CharList(this);
+	    return copy;
     }
 
     /**
@@ -118,6 +122,13 @@ public class CharList
      */
     public void resize(int size) {
         // TODO - you fill in here
+        if (size < 0) {
+            throw new IndexOutOfBoundsException("Invalid size");
+        } else {
+            int sizeDiff = java.lang.Math.abs(this.size - size);
+            this.size = size;
+
+        }
     }
 
     /**
@@ -129,7 +140,9 @@ public class CharList
     public char get(int index) {
         // TODO - you fill in here (replace return '\0' with right
         // implementation).
-        return '\0';
+        Node getNode = seek(index);
+        char output = getNode.data;
+        return output;
     }
 
     /**
@@ -141,6 +154,8 @@ public class CharList
      */
     public void set(int index, char value) {
         // TODO - you fill in here
+        Node setNode = seek(index);
+        setNode.data = value;
     }
 
     /**
@@ -148,7 +163,12 @@ public class CharList
      */
     private Node seek(int index) {
         // TODO - you fill in here
-        return null;
+        rangeCheck(index);
+        Node outNode = this.head;
+        for (int ii = 0; ii < index; ii++) {
+            outNode = outNode.next;
+        }
+        return outNode;
     }
 
     /**
@@ -173,7 +193,7 @@ public class CharList
      */
     private void rangeCheck(int index) {
         // TODO - you fill in here
-        if (index >= size) {
+        if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
     }
@@ -228,6 +248,10 @@ public class CharList
             // Leaving the list fully linked could *potentially* cause
             // a pathological performance issue for the garbage
             // collector.
+            if (this.next != null) {
+                this.next.prune();
+                this.next = null;
+            }
         }
     }
 }
