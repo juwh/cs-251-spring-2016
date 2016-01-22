@@ -35,6 +35,7 @@ public class CharList
     public CharList(int size) {
         // TODO - you fill in here.  Initialize the List
         CharList list;
+        // calls constructor with specified defaultValue
         list = new CharList(size, defaultValue);
         this.head = list.head;
         this.size = list.size;
@@ -52,14 +53,19 @@ public class CharList
         // TODO - you fill in here
         this.defaultValue = defaultValue;
 
+        // valid size check
         if (size < 0) {
             throw new IndexOutOfBoundsException("Invalid size");
         } else {
+            // initial variable assignments
             this.head = null;
             this.size = size;
+            // if not size of 0
             if (size > 0) {
+                // create initial head
                 this.head = new Node(defaultValue, null);
                 Node tmp = this.head;
+                // loop node attachment to size value
                 for (int ii = 0; ii < size - 1; ii++) {
                     tmp = new Node(defaultValue, tmp);
                 }
@@ -74,13 +80,19 @@ public class CharList
      */
     public CharList(CharList s) {
         // TODO - you fill in here
+        // initial variable assignments w/ defaultValue
         this.size = s.size;
         this.defaultValue = s.defaultValue;
         this.head = null;
+
+        // temporary node for list traversal to copy
         Node tmp = s.head;
+        // size zero check
         if (tmp != null) {
+            // create initial head
             this.head = new Node(tmp.data, null);
             Node cur = this.head;
+            // loop node attachment until end of list
             while(tmp.next != null) {
                 tmp = tmp.next;
                 cur.next = new Node(tmp.data, null);
@@ -97,6 +109,7 @@ public class CharList
     public Object clone() {
         // TODO - you fill in here (replace return null with right
         // implementation).
+        // create clone with copy ctor
         CharList copy = new CharList(this);
 	    return copy;
     }
@@ -127,9 +140,11 @@ public class CharList
         // TODO - you fill in here
         Node end, erase;
 
+        // valid size check
         if (size < 0) {
             throw new IndexOutOfBoundsException("Invalid size");
         } else {
+            // if current size is larger than new size
             if (size < this.size) {
                 if (size == 0) {
                     erase = this.head.next;
@@ -141,15 +156,20 @@ public class CharList
                 }
                 erase.prune();
             }
+            // if current size is smaller than new size
             if (size > this.size) {
+                // empty check
                 if (this.size == 0) {
                     this.head = new Node(this.defaultValue, null);
                     end = this.head;
                 } else {
+                    // finds node at end of list
                     end = this.seek(this.size - 1);
+                    // single new node attachment w/ cur defaultValue
                     end.next = new Node(this.defaultValue, end);
                     end = end.next;
                 }
+                // attach more nodes to new size loop
                 int addNum = size - this.size - 1;
                 for(int ii = 0; ii < addNum; ii++) {
                     end.next = new Node(this.defaultValue, end);
@@ -169,6 +189,7 @@ public class CharList
     public char get(int index) {
         // TODO - you fill in here (replace return '\0' with right
         // implementation).
+        // seek to get node at index to pull data
         Node getNode = seek(index);
         char output = getNode.data;
         return output;
@@ -183,6 +204,7 @@ public class CharList
      */
     public void set(int index, char value) {
         // TODO - you fill in here
+        // seek to get node at index to set new value
         Node setNode = seek(index);
         setNode.data = value;
     }
@@ -194,6 +216,7 @@ public class CharList
         // TODO - you fill in here
         rangeCheck(index);
         Node outNode = this.head;
+        // list traversal to node
         for (int ii = 0; ii < index; ii++) {
             outNode = outNode.next;
         }
@@ -214,20 +237,26 @@ public class CharList
     public int compareTo(CharList s) {
         // TODO - you fill in here (replace return 0 with right
         // implementation).
+        // tmp nodes for traversal of both lists
         Node tmp1 = this.head;
         Node tmp2 = s.head;
+        // empty check
         if (tmp1 != null && tmp2 != null) {
+            // traverse until end of either list
             while(tmp1 != null && tmp2 != null) {
+                // comparison checks
                 if (tmp1.data > tmp2.data) {
                     return 1;
                 }
                 if (tmp1.data < tmp2.data) {
                     return -1;
                 }
+                // next node
                 tmp1 = tmp1.next;
                 tmp2 = tmp2.next;
             }
         }
+        // check if both lists traversed (equal) or not
         if (tmp1 == null && tmp2 == null) {
             return 0;
         } else if (tmp1 == null) {
@@ -242,6 +271,7 @@ public class CharList
      */
     private void rangeCheck(int index) {
         // TODO - you fill in here
+        // condition check and throw
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
@@ -274,6 +304,7 @@ public class CharList
          */
         Node(Node prev) {
             // TODO - you fill in here
+            // empty check for previous node to attach to
             if (prev != null) {
                 prev.next = this;
             }
@@ -286,6 +317,7 @@ public class CharList
          */
         Node(char value, Node prev) {
             // TODO - you fill in here
+            // empty check for previous node to attach to
             if (prev != null) {
                 prev.next = this;
             }
@@ -301,6 +333,7 @@ public class CharList
             // Leaving the list fully linked could *potentially* cause
             // a pathological performance issue for the garbage
             // collector.
+            // recursive method to end of list then node disconnection
             if (this.next != null) {
                 this.next.prune();
                 this.next = null;
