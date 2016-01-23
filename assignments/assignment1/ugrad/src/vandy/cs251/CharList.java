@@ -165,7 +165,7 @@ public class CharList
                 } else {
                     // finds node at end of list
                     end = this.seek(this.size - 1);
-                    // single new node attachment w/ cur defaultValue
+                    // single new node attachment w/ current defaultValue
                     end.next = new Node(this.defaultValue, end);
                     end = end.next;
                 }
