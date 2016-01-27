@@ -13,6 +13,7 @@ public class CharList
      * The head of the list.
      */
     // TODO - you fill in here
+    // @@ Please prefix class member variables with 'm'; e.g. mFoo or mBar
     private Node head;
 
     /**
@@ -36,6 +37,7 @@ public class CharList
         // TODO - you fill in here.  Initialize the List
         CharList list;
         // calls constructor with specified defaultValue
+	// @@ This is the *wrong* way to delegate:
         list = new CharList(size, defaultValue);
         this.head = list.head;
         this.size = list.size;
@@ -57,6 +59,7 @@ public class CharList
         if (size < 0) {
             throw new IndexOutOfBoundsException("Invalid size");
         } else {
+	    // @@ Using a dummy node would make all of this MUCH simpler:
             // initial variable assignments
             this.head = null;
             this.size = size;
@@ -84,7 +87,7 @@ public class CharList
         this.size = s.size;
         this.defaultValue = s.defaultValue;
         this.head = null;
-
+	// @@ A similar comment as above:
         // temporary node for list traversal to copy
         Node tmp = s.head;
         // size zero check
@@ -110,6 +113,7 @@ public class CharList
         // TODO - you fill in here (replace return null with right
         // implementation).
         // create clone with copy ctor
+	// @@ This is incorrect:
         CharList copy = new CharList(this);
 	    return copy;
     }
@@ -139,7 +143,8 @@ public class CharList
     public void resize(int size) {
         // TODO - you fill in here
         Node end, erase;
-
+	// @@ This is overll far too complicated and has too many special cases.
+	// 2@ Using a dummy node will simplify. 
         // valid size check
         if (size < 0) {
             throw new IndexOutOfBoundsException("Invalid size");
@@ -190,6 +195,7 @@ public class CharList
         // TODO - you fill in here (replace return '\0' with right
         // implementation).
         // seek to get node at index to pull data
+	// @@ Please just say 'return …'
         Node getNode = seek(index);
         char output = getNode.data;
         return output;
@@ -241,10 +247,12 @@ public class CharList
         Node tmp1 = this.head;
         Node tmp2 = s.head;
         // empty check
+	// @@ Fewer special cases...
         if (tmp1 != null && tmp2 != null) {
             // traverse until end of either list
             while(tmp1 != null && tmp2 != null) {
                 // comparison checks
+		// @@ THis is inefficient:
                 if (tmp1.data > tmp2.data) {
                     return 1;
                 }
@@ -257,6 +265,7 @@ public class CharList
             }
         }
         // check if both lists traversed (equal) or not
+	// @@ THis is inefficient:
         if (tmp1 == null && tmp2 == null) {
             return 0;
         } else if (tmp1 == null) {
@@ -335,6 +344,7 @@ public class CharList
             // collector.
             // recursive method to end of list then node disconnection
             if (this.next != null) {
+		// @@ What if the list is *really* long?
                 this.next.prune();
                 this.next = null;
             }
