@@ -14,13 +14,13 @@ public class CharList
      */
     // TODO - you fill in here
     // @@ Please prefix class member variables with 'm'; e.g. mFoo or mBar
-    private Node head;
+    private Node mHead;
 
     /**
      * The current size of the list.
      */
     // TODO - you fill in here
-    private int size;
+    private int mSize;
 
     /**
      * Default value for elements in the list.
@@ -35,12 +35,9 @@ public class CharList
      */
     public CharList(int size) {
         // TODO - you fill in here.  Initialize the List
-        CharList list;
         // calls constructor with specified defaultValue
 	// @@ This is the *wrong* way to delegate:
-        list = new CharList(size, defaultValue);
-        this.head = list.head;
-        this.size = list.size;
+        this(size, '\0');
     }
 
     /**
@@ -53,25 +50,19 @@ public class CharList
      */
     public CharList(int size, char defaultValue) {
         // TODO - you fill in here
-        this.defaultValue = defaultValue;
-
         // valid size check
         if (size < 0) {
             throw new IndexOutOfBoundsException("Invalid size");
         } else {
-	    // @@ Using a dummy node would make all of this MUCH simpler:
-            // initial variable assignments
-            this.head = null;
-            this.size = size;
-            // if not size of 0
-            if (size > 0) {
-                // create initial head
-                this.head = new Node(defaultValue, null);
-                Node tmp = this.head;
-                // loop node attachment to size value
-                for (int ii = 0; ii < size - 1; ii++) {
-                    tmp = new Node(defaultValue, tmp);
-                }
+	    // XX Using a dummy node would make all of this MUCH simpler:
+            this.mSize = size;
+            this.defaultValue = defaultValue;
+            // create dummy node
+            this.mHead = new Node(defaultValue, null);
+            Node tmp = this.mHead;
+            // loop node attachment to size value
+            for (int ii = 0; ii < size; ii++) {
+                tmp = new Node(defaultValue, tmp);
             }
         }
     }
@@ -84,23 +75,19 @@ public class CharList
     public CharList(CharList s) {
         // TODO - you fill in here
         // initial variable assignments w/ defaultValue
-        this.size = s.size;
+        this.mSize = s.mSize;
         this.defaultValue = s.defaultValue;
-        this.head = null;
-	// @@ A similar comment as above:
+	// XX A similar comment as above:
         // temporary node for list traversal to copy
-        Node tmp = s.head;
-        // size zero check
-        if (tmp != null) {
-            // create initial head
-            this.head = new Node(tmp.data, null);
-            Node cur = this.head;
-            // loop node attachment until end of list
-            while(tmp.next != null) {
-                tmp = tmp.next;
-                cur.next = new Node(tmp.data, null);
-                cur = cur.next;
-            }
+        Node tmp = s.mHead;
+        // create initial dummy head
+        this.mHead = new Node(tmp.data, null);
+        Node cur = this.mHead;
+        // loop node attachment until end of list
+        while(tmp.next != null) {
+            tmp = tmp.next;
+            cur.next = new Node(tmp.data, null);
+            cur = cur.next;
         }
     }
 
@@ -124,7 +111,7 @@ public class CharList
     public int size() {
         // TODO - you fill in here (replace return 0 with right
         // implementation).
-    	return this.size;
+    	return this.mSize;
     }
 
     /**
@@ -150,38 +137,24 @@ public class CharList
             throw new IndexOutOfBoundsException("Invalid size");
         } else {
             // if current size is larger than new size
-            if (size < this.size) {
-                if (size == 0) {
-                    erase = this.head.next;
-                    head = null;
-                } else {
-                    end = this.seek(size - 1);
-                    erase = this.seek(size);
-                    end.next = null;
-                }
+            if (size < this.mSize) {
+                end = this.seek(size - 1);
+                erase = end.next;
                 erase.prune();
+                end.next = null;
             }
             // if current size is smaller than new size
-            if (size > this.size) {
-                // empty check
-                if (this.size == 0) {
-                    this.head = new Node(this.defaultValue, null);
-                    end = this.head;
-                } else {
-                    // finds node at end of list
-                    end = this.seek(this.size - 1);
-                    // single new node attachment w/ current defaultValue
-                    end.next = new Node(this.defaultValue, end);
-                    end = end.next;
-                }
-                // attach more nodes to new size loop
-                int addNum = size - this.size - 1;
+            if (size > this.mSize) {
+                // finds node at end of list
+                end = this.seek(this.mSize - 1);
+                // attach nodes to new size loop
+                int addNum = size - this.mSize;
                 for(int ii = 0; ii < addNum; ii++) {
                     end.next = new Node(this.defaultValue, end);
                     end = end.next;
                 }
             }
-            this.size = size;
+            this.mSize = size;
         }
     }
 
@@ -195,10 +168,8 @@ public class CharList
         // TODO - you fill in here (replace return '\0' with right
         // implementation).
         // seek to get node at index to pull data
-	// @@ Please just say 'return …'
-        Node getNode = seek(index);
-        char output = getNode.data;
-        return output;
+	// XX Please just say 'return …'
+        return seek(index).data;
     }
 
     /**
@@ -221,7 +192,8 @@ public class CharList
     private Node seek(int index) {
         // TODO - you fill in here
         rangeCheck(index);
-        Node outNode = this.head;
+        // begins at first node
+        Node outNode = this.mHead.next;
         // list traversal to node
         for (int ii = 0; ii < index; ii++) {
             outNode = outNode.next;
@@ -244,35 +216,22 @@ public class CharList
         // TODO - you fill in here (replace return 0 with right
         // implementation).
         // tmp nodes for traversal of both lists
-        Node tmp1 = this.head;
-        Node tmp2 = s.head;
+        Node tmp1 = this.mHead.next;
+        Node tmp2 = s.mHead.next;
         // empty check
 	// @@ Fewer special cases...
-        if (tmp1 != null && tmp2 != null) {
-            // traverse until end of either list
-            while(tmp1 != null && tmp2 != null) {
-                // comparison checks
-		// @@ THis is inefficient:
-                if (tmp1.data > tmp2.data) {
-                    return 1;
-                }
-                if (tmp1.data < tmp2.data) {
-                    return -1;
-                }
-                // next node
-                tmp1 = tmp1.next;
-                tmp2 = tmp2.next;
+        // traverse until end of either list
+        while(tmp1 != null && tmp2 != null) {
+            // comparison checks
+            // @@ THis is inefficient:
+            if (tmp1.data - tmp2.data != 0) {
+                return tmp1.data - tmp2.data;
             }
+            // next node
+            tmp1 = tmp1.next;
+            tmp2 = tmp2.next;
         }
-        // check if both lists traversed (equal) or not
-	// @@ THis is inefficient:
-        if (tmp1 == null && tmp2 == null) {
-            return 0;
-        } else if (tmp1 == null) {
-            return -1;
-        } else {
-            return 1;
-        }
+        return 0;
     }
 
     /**
@@ -281,7 +240,7 @@ public class CharList
     private void rangeCheck(int index) {
         // TODO - you fill in here
         // condition check and throw
-        if (index >= size || index < 0) {
+        if (index >= mSize || index < 0) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
     }
