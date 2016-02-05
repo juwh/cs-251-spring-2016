@@ -172,14 +172,6 @@ public class ListArray<T extends Comparable<T>>
 
     private Node seek(int index) {
         // TODO - you fill in here.
-        rangeCheck(index);
-        // begins at first node
-        Node outNode = this.mHead.next;
-        // list traversal to node
-        for (int ii = 0; ii < index; ii++) {
-            outNode = outNode.next;
-        }
-        return outNode;
     }
 
     /**
