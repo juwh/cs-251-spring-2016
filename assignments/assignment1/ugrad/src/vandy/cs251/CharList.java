@@ -77,7 +77,7 @@ public class CharList
         // initial variable assignments w/ defaultValue
         this.mSize = s.mSize;
         this.defaultValue = s.defaultValue;
-	// XX A similar comment as above:
+	    // XX A similar comment as above:
         // temporary node for list traversal to copy
         Node tmp = s.mHead;
         // create initial dummy head
@@ -137,8 +137,11 @@ public class CharList
             throw new IndexOutOfBoundsException("Invalid size");
         } else {
             // if current size is larger than new size
+            end = this.mHead;
             if (size < this.mSize) {
-                end = this.seek(size - 1);
+                for(int jj = 0; jj < size; jj++) {
+                    end = end.next;
+                }
                 erase = end.next;
                 erase.prune();
                 end.next = null;
@@ -146,7 +149,11 @@ public class CharList
             // if current size is smaller than new size
             if (size > this.mSize) {
                 // finds node at end of list
-                end = this.seek(this.mSize - 1);
+                // initially seek, however issues arise with empty
+                // and forces the implementation to be complex
+                for(int kk = 0; kk < mSize; kk++) {
+                    end = end.next;
+                }
                 // attach nodes to new size loop
                 int addNum = size - this.mSize;
                 for(int ii = 0; ii < addNum; ii++) {
@@ -219,14 +226,11 @@ public class CharList
         Node tmp1 = this.mHead.next;
         Node tmp2 = s.mHead.next;
         // empty check
-	// @@ Fewer special cases...
+	    // @@ Fewer special cases...
         // traverse until end of either list
-        while(tmp1 != null && tmp2 != null) {
+        while(tmp1 != null && tmp2 != null || int result == 0) {
             // comparison checks
-            // @@ THis is inefficient:
-            if (tmp1.data - tmp2.data != 0) {
-                return tmp1.data - tmp2.data;
-            }
+            result = (tmp1.data = tmp2.data);
             // next node
             tmp1 = tmp1.next;
             tmp2 = tmp2.next;
@@ -302,10 +306,13 @@ public class CharList
             // a pathological performance issue for the garbage
             // collector.
             // recursive method to end of list then node disconnection
-            if (this.next != null) {
-		// @@ What if the list is *really* long?
-                this.next.prune();
-                this.next = null;
+            Node tmp = this.next;
+            Node cur = this;
+            while (cur.next != null) {
+		// XX What if the list is *really* long?
+                cur.next = null;
+                cur = tmp;
+                tmp = tmp.next;
             }
         }
     }
