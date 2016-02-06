@@ -172,6 +172,7 @@ public class ListArray<T extends Comparable<T>>
 
     private Node seek(int index) {
         // TODO - you fill in here.
+<<<<<<< HEAD
         rangeCheck(index);
         // begins at first node
         Node outNode = this.mHead.next;
@@ -180,6 +181,9 @@ public class ListArray<T extends Comparable<T>>
             outNode = outNode.next;
         }
         return outNode;
+=======
+        return null;
+>>>>>>> 0fd9ba846d124c5759dd20c75af667f504819c08
     }
 
     /**
@@ -194,18 +198,7 @@ public class ListArray<T extends Comparable<T>>
     public T remove(int index) {
         // TODO - you fill in here (replace null with proper return
         // value).
-        rangeCheck(index);
-        T output;
-        Node tmp = this.mHead;
-        Node cur = this.mHead.next;
-        for (int ii = 0; ii < index; ii++) {
-            tmp = tmp.next;
-            cur = cur.next;
-        }
-        output = cur.data;
-        tmp.next = cur.next;
-        cur.next = null;
-        return output;
+        return null;
     }
 
     /**
@@ -336,20 +329,31 @@ public class ListArray<T extends Comparable<T>>
 
     private class NodeIterator implements Iterator<Node> {
         // TODO: Fill in any fields you require.
+
+        /**
+         * The current size of the array.
+         */
+        private int itSize = mSize;
+
         /**
          * The current node of the array.
          */
         private Node curNode = mHead;
 
         /**
+         * The current index of the array.
+         */
+        private int curIndex = -1;
+
+        /**
          * The previous node of the array.
          */
-        private Node prevNode = mHead;
+        private Node prevNode;
 
         /**
          * Keeps track of whether next has been called
          */
-        private boolean nCalled = false;
+        private boolean nCalled = true;
 
         /**
          * Returns {@code true} if the iteration has more elements.
@@ -360,7 +364,7 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public boolean hasNext() {
-            return (this.curNode.next != null);
+            return (this.curIndex + 1 != this.itSize);
         }
 
         /**
@@ -374,7 +378,8 @@ public class ListArray<T extends Comparable<T>>
             if (this.hasNext()) {
                 this.prevNode = this.curNode;
                 this.curNode = this.curNode.next;
-                nCalled = true;
+                this.curIndex++;
+
                 return this.curNode;
             }
             throw new NoSuchElementException("The next element does not exist");
@@ -399,14 +404,12 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public void remove() {
-            if (nCalled && mSize > 0) {
-                this.prevNode.next = curNode.next;
-                this.curNode = prevNode;
-                mSize--;
+            if (nCalled) {
+                this.prevNode.next = this.curNode.next;
+                curNode.next = null;
                 nCalled = false;
-            } else {
-                throw new IllegalStateException("next() has not been called since the last remove()");
             }
+            throw new IllegalStateException("next() has not been called since the last remove()");
         }
     }
 
