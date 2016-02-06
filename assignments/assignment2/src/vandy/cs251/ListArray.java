@@ -108,7 +108,7 @@ public class ListArray<T extends Comparable<T>>
     public void resize(int size) {
         // TODO - you fill in here.
         Node end, erase;
-        // @@ This is overll far too complicated and has too many special cases.
+        // XX This is overll far too complicated and has too many special cases.
         // 2@ Using a dummy node will simplify.
         // valid size check
         if (size < 0) {
@@ -127,7 +127,7 @@ public class ListArray<T extends Comparable<T>>
             // if current size is smaller than new size
             if (size > this.mSize) {
                 // finds node at end of list
-                // initially seek, however issues arise with empty
+                // initially used seek, however issues arise with empty
                 // and forces the implementation to be complex
                 for(int kk = 0; kk < mSize; kk++) {
                     end = end.next;
@@ -193,18 +193,21 @@ public class ListArray<T extends Comparable<T>>
      */
     public T remove(int index) {
         // TODO - you fill in here (replace null with proper return
+
         // value).
         rangeCheck(index);
-        T output;
+        T output = null;
+        // iterator creation
+        Iterator<T> iter = this.iterator();
+        iter.next();
         Node tmp = this.mHead;
         Node cur = this.mHead.next;
+        // traverse list with iterator
         for (int ii = 0; ii < index; ii++) {
-            tmp = tmp.next;
-            cur = cur.next;
+            output = iter.next();
         }
-        output = cur.data;
-        tmp.next = cur.next;
-        cur.next = null;
+        // get data and remove
+        iter.remove();
         return output;
     }
 
@@ -372,8 +375,10 @@ public class ListArray<T extends Comparable<T>>
         @Override
         public Node next() {
             if (this.hasNext()) {
+                // moves nodes right one
                 this.prevNode = this.curNode;
                 this.curNode = this.curNode.next;
+                // ticks next call
                 nCalled = true;
                 return this.curNode;
             }
@@ -399,10 +404,13 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public void remove() {
-            if (nCalled && mSize > 0) {
+            if (nCalled) {
+                // relink without deleted node
                 this.prevNode.next = curNode.next;
+                // requirement of next for next remove causes need for curNode to be moved back
                 this.curNode = prevNode;
                 mSize--;
+                // next call tick
                 nCalled = false;
             } else {
                 throw new IllegalStateException("next() has not been called since the last remove()");
