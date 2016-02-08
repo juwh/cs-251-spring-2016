@@ -26,6 +26,7 @@ public class ListArray<T extends Comparable<T>>
      * Default value for elements in the array.
      */
     // TODO - you fill in here.
+    // @@ Please prefix class member variables with 'm'; e.g. mFoo or mBar
     private T defaultValue;
 
     /**
@@ -82,9 +83,11 @@ public class ListArray<T extends Comparable<T>>
         // create initial dummy head
         this.mHead = new Node(tmp.data, null);
         Node cur = this.mHead;
+	// @@ Could you use a dummy node?
         // loop node attachment until end of list
         while(tmp.next != null) {
             tmp = tmp.next;
+	    // @@ You sure about this?
             cur.next = new Node(tmp.data, null);
             cur = cur.next;
         }
@@ -113,10 +116,12 @@ public class ListArray<T extends Comparable<T>>
         // valid size check
         if (size < 0) {
             throw new ArrayIndexOutOfBoundsException("Invalid size");
+	    // @@ You don't need "else"
         } else {
             // if current size is larger than new size
             end = this.mHead;
             if (size < this.mSize) {
+		// @@ Seek?
                 for(int jj = 0; jj < size; jj++) {
                     end = end.next;
                 }
@@ -129,6 +134,7 @@ public class ListArray<T extends Comparable<T>>
                 // finds node at end of list
                 // initially used seek, however issues arise with empty
                 // and forces the implementation to be complex
+		// @@ Seek?
                 for(int kk = 0; kk < mSize; kk++) {
                     end = end.next;
                 }
@@ -166,6 +172,7 @@ public class ListArray<T extends Comparable<T>>
      */
     public void set(int index, T value) {
         // TODO - you fill in here.
+	// @@ One line:
         Node setNode = seek(index);
         setNode.data = value;
     }
@@ -227,6 +234,7 @@ public class ListArray<T extends Comparable<T>>
         // empty checks
         if (this.mSize != 0 && s.mSize != 0) {
             // tmp nodes for traversal of both lists
+	    // @@ could you use iterators?
             Node tmp1 = this.mHead.next;
             Node tmp2 = s.mHead.next;
             // XX Fewer special cases...
