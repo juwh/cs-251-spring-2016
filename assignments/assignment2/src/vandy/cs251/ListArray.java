@@ -26,8 +26,7 @@ public class ListArray<T extends Comparable<T>>
      * Default value for elements in the array.
      */
     // TODO - you fill in here.
-    // @@ Please prefix class member variables with 'm'; e.g. mFoo or mBar
-    private T defaultValue;
+    private T mDefaultValue;
 
     /**
      * Constructs an array of the given size.
@@ -56,9 +55,8 @@ public class ListArray<T extends Comparable<T>>
         if (size < 0) {
             throw new NegativeArraySizeException("Invalid negative size");
         } else {
-            // XX Using a dummy node would make all of this MUCH simpler:
             this.mSize = size;
-            this.defaultValue = defaultValue;
+            this.mDefaultValue = defaultValue;
             // create dummy node
             this.mHead = new Node(defaultValue, null);
             Node tmp = this.mHead;
@@ -76,8 +74,7 @@ public class ListArray<T extends Comparable<T>>
     public ListArray(ListArray<T> s) {
         // TODO - you fill in here.
         this.mSize = s.mSize;
-        this.defaultValue = s.defaultValue;
-        // XX A similar comment as above:
+        this.mDefaultValue = s.mDefaultValue;
         // temporary node for list traversal to copy
         Node tmp = s.mHead;
         // create initial dummy head
@@ -88,7 +85,7 @@ public class ListArray<T extends Comparable<T>>
         while(tmp.next != null) {
             tmp = tmp.next;
 	    // @@ You sure about this?
-            cur.next = new Node(tmp.data, null);
+            cur.next = new Node(tmp.data, cur);
             cur = cur.next;
         }
     }
@@ -111,42 +108,38 @@ public class ListArray<T extends Comparable<T>>
     public void resize(int size) {
         // TODO - you fill in here.
         Node end, erase;
-        // XX This is overll far too complicated and has too many special cases.
-        // 2@ Using a dummy node will simplify.
         // valid size check
         if (size < 0) {
             throw new ArrayIndexOutOfBoundsException("Invalid size");
-	    // @@ You don't need "else"
-        } else {
-            // if current size is larger than new size
-            end = this.mHead;
-            if (size < this.mSize) {
-		// @@ Seek?
-                for(int jj = 0; jj < size; jj++) {
-                    end = end.next;
-                }
-                erase = end.next;
-                erase.prune();
-                end.next = null;
-            }
-            // if current size is smaller than new size
-            if (size > this.mSize) {
-                // finds node at end of list
-                // initially used seek, however issues arise with empty
-                // and forces the implementation to be complex
-		// @@ Seek?
-                for(int kk = 0; kk < mSize; kk++) {
-                    end = end.next;
-                }
-                // attach nodes to new size loop
-                int addNum = size - this.mSize;
-                for(int ii = 0; ii < addNum; ii++) {
-                    end.next = new Node(this.defaultValue, end);
-                    end = end.next;
-                }
-            }
-            this.mSize = size;
         }
+        // if current size is larger than new size
+        end = this.mHead;
+        if (size < this.mSize) {
+            // @@ Seek?
+            for(int jj = 0; jj < size; jj++) {
+                end = end.next;
+            }
+            erase = end.next;
+            erase.prune();
+            end.next = null;
+        }
+        // if current size is smaller than new size
+        if (size > this.mSize) {
+            // finds node at end of list
+            // initially used seek, however issues arise with empty
+            // and forces the implementation to be complex
+            // @@ Seek?
+            for(int kk = 0; kk < mSize; kk++) {
+                end = end.next;
+            }
+            // attach nodes to new size loop
+            int addNum = size - this.mSize;
+            for(int ii = 0; ii < addNum; ii++) {
+                end.next = new Node(this.mDefaultValue, end);
+                end = end.next;
+            }
+        }
+        this.mSize = size;
     }
 
     /**
@@ -159,7 +152,6 @@ public class ListArray<T extends Comparable<T>>
         // TODO - you fill in here (replace null with proper return
         // value).
         // seek to get node at index to pull data
-        // XX Please just say 'return …'
         return seek(index).data;
     }
 
@@ -172,9 +164,7 @@ public class ListArray<T extends Comparable<T>>
      */
     public void set(int index, T value) {
         // TODO - you fill in here.
-	// @@ One line:
-        Node setNode = seek(index);
-        setNode.data = value;
+        this.seek(index).data = value;
     }
 
     private Node seek(int index) {
@@ -207,8 +197,6 @@ public class ListArray<T extends Comparable<T>>
         // iterator creation
         Iterator<T> iter = this.iterator();
         iter.next();
-        Node tmp = this.mHead;
-        Node cur = this.mHead.next;
         // traverse list with iterator
         for (int ii = 0; ii < index; ii++) {
             output = iter.next();
@@ -231,22 +219,19 @@ public class ListArray<T extends Comparable<T>>
     public int compareTo(ListArray<T> s) {
         // TODO - you fill in here (replace 0 with proper return
         // value).
+        Iterator<T> iter1 = this.iterator();
+        Iterator<T> iter2 = s.iterator();
         // empty checks
         if (this.mSize != 0 && s.mSize != 0) {
             // tmp nodes for traversal of both lists
-	    // @@ could you use iterators?
-            Node tmp1 = this.mHead.next;
-            Node tmp2 = s.mHead.next;
-            // XX Fewer special cases...
+	    // XX could you use iterators?
             // traverse until end of either list
-            for (int ii = 0; ii < Math.min(this.mSize, s.mSize); ii++) {
+            while (iter1.hasNext() && iter2.hasNext()) {
                 // comparison checks
-                int result = tmp1.data.compareTo(tmp2.data);
+                int result = iter1.next().compareTo(iter2.next());
                 if (result != 0) {
                     return result;
                 }
-                tmp1 = tmp1.next;
-                tmp2 = tmp2.next;
             }
         }
         return this.mSize - s.mSize;
@@ -299,7 +284,7 @@ public class ListArray<T extends Comparable<T>>
             if (prev != null) {
                 prev.next = this;
             }
-            this.data = defaultValue;
+            this.data = mDefaultValue;
             this.next = null;
 
         }
@@ -330,7 +315,6 @@ public class ListArray<T extends Comparable<T>>
             Node tmp = this.next;
             Node cur = this;
             while (cur.next != null) {
-                // XX What if the list is *really* long?
                 cur.next = null;
                 cur = tmp;
                 tmp = tmp.next;
@@ -358,11 +342,6 @@ public class ListArray<T extends Comparable<T>>
         private Node prevNode = mHead;
 
         /**
-         * Keeps track of whether next has been called
-         */
-        private boolean nCalled = false;
-
-        /**
          * Returns {@code true} if the iteration has more elements.
          * (In other words, returns {@code true} if {@link #next} would
          * return an element rather than throwing an exception.)
@@ -387,7 +366,6 @@ public class ListArray<T extends Comparable<T>>
                 this.prevNode = this.curNode;
                 this.curNode = this.curNode.next;
                 // ticks next call
-                nCalled = true;
                 return this.curNode;
             }
             throw new NoSuchElementException("The next element does not exist");
@@ -412,14 +390,13 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public void remove() {
-            if (nCalled) {
+            if (this.curNode != this.prevNode) {
                 // relink without deleted node
                 this.prevNode.next = curNode.next;
                 // requirement of next for next remove causes need for curNode to be moved back
                 this.curNode = prevNode;
                 mSize--;
                 // next call tick
-                nCalled = false;
             } else {
                 throw new IllegalStateException("next() has not been called since the last remove()");
             }
