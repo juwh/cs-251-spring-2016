@@ -26,7 +26,7 @@ public class CharList
      * Default value for elements in the list.
      */
     // TODO - you fill in here
-    private char defaultValue;
+    private char mDefaultValue;
 
     /**
      * Constructs an list of the given size.
@@ -56,7 +56,7 @@ public class CharList
         } else {
 	    // XX Using a dummy node would make all of this MUCH simpler:
             this.mSize = size;
-            this.defaultValue = defaultValue;
+            this.mDefaultValue = defaultValue;
             // create dummy node
             this.mHead = new Node(defaultValue, null);
             Node tmp = this.mHead;
@@ -73,20 +73,16 @@ public class CharList
      * @param s The CharList to be copied.
      */
     public CharList(CharList s) {
-        // TODO - you fill in here
-        // initial variable assignments w/ defaultValue
-        this.mSize = s.mSize;
-        this.defaultValue = s.defaultValue;
-	    // XX A similar comment as above:
-        // temporary node for list traversal to copy
+        // TODO - you fill in here.
+        this(s.mSize, s.mDefaultValue);
         Node tmp = s.mHead;
-        // create initial dummy head
-        this.mHead = new Node(tmp.data, null);
         Node cur = this.mHead;
+        // @@ Could you use a dummy node?
         // loop node attachment until end of list
         while(tmp.next != null) {
             tmp = tmp.next;
-            cur.next = new Node(tmp.data, null);
+            // @@ You sure about this?
+            new Node(tmp.data, cur);
             cur = cur.next;
         }
     }
@@ -130,39 +126,34 @@ public class CharList
     public void resize(int size) {
         // TODO - you fill in here
         Node end, erase;
-	// @@ This is overll far too complicated and has too many special cases.
-	// 2@ Using a dummy node will simplify. 
         // valid size check
         if (size < 0) {
-            throw new IndexOutOfBoundsException("Invalid size");
-        } else {
-            // if current size is larger than new size
-            end = this.mHead;
-            if (size < this.mSize) {
-                for(int jj = 0; jj < size; jj++) {
-                    end = end.next;
-                }
-                erase = end.next;
-                erase.prune();
-                end.next = null;
-            }
-            // if current size is smaller than new size
-            if (size > this.mSize) {
-                // finds node at end of list
-                // initially seek, however issues arise with empty
-                // and forces the implementation to be complex
-                for(int kk = 0; kk < mSize; kk++) {
-                    end = end.next;
-                }
-                // attach nodes to new size loop
-                int addNum = size - this.mSize;
-                for(int ii = 0; ii < addNum; ii++) {
-                    end.next = new Node(this.defaultValue, end);
-                    end = end.next;
-                }
-            }
-            this.mSize = size;
+            throw new ArrayIndexOutOfBoundsException("Invalid size");
         }
+        // if current size is larger than new size
+        end = this.mHead;
+        if (size < this.mSize) {
+            // XX Seek?
+            if (size > 0) {
+                end = seek(size - 1);
+            }
+            end.prune();
+        }
+        // if current size is smaller than new size
+        if (size > this.mSize) {
+            // finds node at end of list
+            // XX Seek?
+            if (mSize > 0) {
+                end = seek(mSize - 1);
+            }
+            // attach nodes to new size loop
+            int addNum = size - this.mSize;
+            for(int ii = 0; ii < addNum; ii++) {
+                end.next = new Node(this.mDefaultValue, end);
+                end = end.next;
+            }
+        }
+        this.mSize = size;
     }
 
     /**
@@ -188,9 +179,7 @@ public class CharList
      */
     public void set(int index, char value) {
         // TODO - you fill in here
-        // seek to get node at index to set new value
-        Node setNode = seek(index);
-        setNode.data = value;
+        this.seek(index).data = value;
     }
 
     /**
@@ -228,14 +217,17 @@ public class CharList
         // empty check
 	    // @@ Fewer special cases...
         // traverse until end of either list
-        while(tmp1 != null && tmp2 != null || int result == 0) {
+        while(tmp1 != null && tmp2 != null) {
             // comparison checks
-            result = (tmp1.data = tmp2.data);
+            boolean result = (tmp1.data == tmp2.data);
+            if (result == false) {
+                return tmp1.data - tmp2.data;
+            }
             // next node
             tmp1 = tmp1.next;
             tmp2 = tmp2.next;
         }
-        return 0;
+        return this.mSize - s.mSize;
     }
 
     /**
@@ -277,11 +269,7 @@ public class CharList
         Node(Node prev) {
             // TODO - you fill in here
             // empty check for previous node to attach to
-            if (prev != null) {
-                prev.next = this;
-            }
-            this.data = defaultValue;
-            this.next = null;
+            this(mDefaultValue, prev);
         }
 
         /**

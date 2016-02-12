@@ -73,19 +73,15 @@ public class ListArray<T extends Comparable<T>>
      */
     public ListArray(ListArray<T> s) {
         // TODO - you fill in here.
-        this.mSize = s.mSize;
-        this.mDefaultValue = s.mDefaultValue;
-        // temporary node for list traversal to copy
+        this(s.mSize, s.mDefaultValue);
         Node tmp = s.mHead;
-        // create initial dummy head
-        this.mHead = new Node(tmp.data, null);
         Node cur = this.mHead;
 	// @@ Could you use a dummy node?
         // loop node attachment until end of list
         while(tmp.next != null) {
             tmp = tmp.next;
 	    // @@ You sure about this?
-            cur.next = new Node(tmp.data, cur);
+            new Node(tmp.data, cur);
             cur = cur.next;
         }
     }
@@ -115,22 +111,18 @@ public class ListArray<T extends Comparable<T>>
         // if current size is larger than new size
         end = this.mHead;
         if (size < this.mSize) {
-            // @@ Seek?
-            for(int jj = 0; jj < size; jj++) {
-                end = end.next;
+            // XX Seek?
+            if (size > 0) {
+                end = seek(size - 1);
             }
-            erase = end.next;
-            erase.prune();
-            end.next = null;
+            end.prune();
         }
         // if current size is smaller than new size
         if (size > this.mSize) {
             // finds node at end of list
-            // initially used seek, however issues arise with empty
-            // and forces the implementation to be complex
-            // @@ Seek?
-            for(int kk = 0; kk < mSize; kk++) {
-                end = end.next;
+            // XX Seek?
+            if (mSize > 0) {
+                end = seek(mSize - 1);
             }
             // attach nodes to new size loop
             int addNum = size - this.mSize;
@@ -281,12 +273,7 @@ public class ListArray<T extends Comparable<T>>
         Node(Node prev) {
             // TODO - you fill in here.
             // empty check for previous node to attach to
-            if (prev != null) {
-                prev.next = this;
-            }
-            this.data = mDefaultValue;
-            this.next = null;
-
+            this(mDefaultValue, prev);
         }
 
         /**
