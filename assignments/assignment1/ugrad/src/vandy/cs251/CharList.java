@@ -14,6 +14,7 @@ public class CharList
      */
     // TODO - you fill in here
     // @@ Please prefix class member variables with 'm'; e.g. mFoo or mBar
+    // all class members prefixed with 'm'
     private Node mHead;
 
     /**
@@ -37,6 +38,7 @@ public class CharList
         // TODO - you fill in here.  Initialize the List
         // calls constructor with specified defaultValue
 	// @@ This is the *wrong* way to delegate:
+        // changed delegation to utilize other constructor
         this(size, '\0');
     }
 
@@ -55,6 +57,7 @@ public class CharList
             throw new IndexOutOfBoundsException("Invalid size");
         } else {
 	    // XX Using a dummy node would make all of this MUCH simpler:
+            // changed implementation with dummy node
             this.mSize = size;
             this.mDefaultValue = defaultValue;
             // create dummy node
@@ -78,6 +81,7 @@ public class CharList
         Node tmp = s.mHead;
         Node cur = this.mHead;
         // @@ Could you use a dummy node?
+        // changed implementation with dummy node
         // loop node attachment until end of list
         while(tmp.next != null) {
             tmp = tmp.next;
@@ -97,6 +101,7 @@ public class CharList
         // implementation).
         // create clone with copy ctor
 	// @@ This is incorrect:
+        // told to ignore
         CharList copy = new CharList(this);
 	    return copy;
     }
@@ -127,6 +132,7 @@ public class CharList
         // TODO - you fill in here
         Node end, erase;
         // valid size check
+        // made less complicated
         if (size < 0) {
             throw new ArrayIndexOutOfBoundsException("Invalid size");
         }
@@ -134,6 +140,7 @@ public class CharList
         end = this.mHead;
         if (size < this.mSize) {
             // XX Seek?
+            // utilized seek by adding special case
             if (size > 0) {
                 end = seek(size - 1);
             }
@@ -143,6 +150,7 @@ public class CharList
         if (size > this.mSize) {
             // finds node at end of list
             // XX Seek?
+            // utilized seek by adding special case
             if (mSize > 0) {
                 end = seek(mSize - 1);
             }
@@ -216,11 +224,11 @@ public class CharList
         Node tmp2 = s.mHead.next;
         // empty check
 	    // @@ Fewer special cases...
+        // lessened special cases with subtraction of sizes
         // traverse until end of either list
         while(tmp1 != null && tmp2 != null) {
             // comparison checks
-            boolean result = (tmp1.data == tmp2.data);
-            if (result == false) {
+            if (!(tmp1.data == tmp2.data)) {
                 return tmp1.data - tmp2.data;
             }
             // next node
@@ -298,6 +306,7 @@ public class CharList
             Node cur = this;
             while (cur.next != null) {
 		// XX What if the list is *really* long?
+                // changed from recursive to iterated loop
                 cur.next = null;
                 cur = tmp;
                 tmp = tmp.next;

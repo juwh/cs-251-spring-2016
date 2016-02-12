@@ -26,6 +26,7 @@ public class ListArray<T extends Comparable<T>>
      * Default value for elements in the array.
      */
     // TODO - you fill in here.
+    // m added to all fields
     private T mDefaultValue;
 
     /**
@@ -77,10 +78,12 @@ public class ListArray<T extends Comparable<T>>
         Node tmp = s.mHead;
         Node cur = this.mHead;
 	// @@ Could you use a dummy node?
+        // dummy node should already have been implemented
         // loop node attachment until end of list
         while(tmp.next != null) {
             tmp = tmp.next;
 	    // @@ You sure about this?
+            // simplified to attach using prev
             new Node(tmp.data, cur);
             cur = cur.next;
         }
@@ -112,6 +115,7 @@ public class ListArray<T extends Comparable<T>>
         end = this.mHead;
         if (size < this.mSize) {
             // XX Seek?
+            // utilized seek by adding special case
             if (size > 0) {
                 end = seek(size - 1);
             }
@@ -121,6 +125,7 @@ public class ListArray<T extends Comparable<T>>
         if (size > this.mSize) {
             // finds node at end of list
             // XX Seek?
+            // utilized seek by adding special case
             if (mSize > 0) {
                 end = seek(mSize - 1);
             }
@@ -217,6 +222,7 @@ public class ListArray<T extends Comparable<T>>
         if (this.mSize != 0 && s.mSize != 0) {
             // tmp nodes for traversal of both lists
 	    // XX could you use iterators?
+            // completed using iterators
             // traverse until end of either list
             while (iter1.hasNext() && iter2.hasNext()) {
                 // comparison checks
@@ -273,6 +279,7 @@ public class ListArray<T extends Comparable<T>>
         Node(Node prev) {
             // TODO - you fill in here.
             // empty check for previous node to attach to
+            // implemented with other constructor
             this(mDefaultValue, prev);
         }
 
@@ -352,7 +359,7 @@ public class ListArray<T extends Comparable<T>>
                 // moves nodes right one
                 this.prevNode = this.curNode;
                 this.curNode = this.curNode.next;
-                // ticks next call
+                // ticks next call which is now removed
                 return this.curNode;
             }
             throw new NoSuchElementException("The next element does not exist");
@@ -383,7 +390,7 @@ public class ListArray<T extends Comparable<T>>
                 // requirement of next for next remove causes need for curNode to be moved back
                 this.curNode = prevNode;
                 mSize--;
-                // next call tick
+                // next call removed
             } else {
                 throw new IllegalStateException("next() has not been called since the last remove()");
             }
