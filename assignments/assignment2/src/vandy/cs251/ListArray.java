@@ -74,6 +74,9 @@ public class ListArray<T extends Comparable<T>>
      */
     public ListArray(ListArray<T> s) {
         // TODO - you fill in here.
+        // NJL - You are creating your list twice. Don't use a call to the other constructor here, just create the new nodes.
+        // I think this will result in your list having twice as many nodes as you wanted.
+        // -4 pts; Incorrect copy ctor
         this(s.mSize, s.mDefaultValue);
         Node tmp = s.mHead;
         Node cur = this.mHead;
@@ -258,6 +261,8 @@ public class ListArray<T extends Comparable<T>>
         /**
          * Value stored in the Node.
          */
+        // NJL - Class member variables should start with a "m." This is listed as a Frequently Made Mistake.
+        // -3 pts; incorrect member variable naming
         private T data;
 
         /**
@@ -293,6 +298,8 @@ public class ListArray<T extends Comparable<T>>
                 prev.next = this;
             }
             this.data = value;
+            // NJL - You want to set this.next = to the original prev.next
+            // -3 pts; Incorrect Node Ctor
             this.next = null;
 
         }
@@ -402,6 +409,9 @@ public class ListArray<T extends Comparable<T>>
      */
     private class ListIterator implements Iterator<T> {
         // TODO: Fill in any fields you require.
+
+        // NJL - Use the iterator factory to make iterators. This is a Frequently Made Mistake.
+        // -3 pts; FMM Iterator Factory
         private NodeIterator nIter = new NodeIterator();
 
         /**
