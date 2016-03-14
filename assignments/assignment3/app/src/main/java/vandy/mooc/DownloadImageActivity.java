@@ -59,9 +59,11 @@ public class DownloadImageActivity
         // Always call super class for necessary
         // initialization/implementation.
         // TODO -- you fill in here.
+        super.onCreate(savedInstanceState);
 
         // Set the default layout.
         // TODO -- you fill in here.
+        setContentView(R.layout.download_image_activity);
 
         // Store the ProgressBar in a field for fast access.
         mLoadingProgressBar = (ProgressBar)
@@ -120,6 +122,7 @@ public class DownloadImageActivity
         // Always call super class for necessary
         // initialization/implementation.
         // TODO - you fill in here.
+        super.onStart();
 
         // Make progress bar visible.
         mLoadingProgressBar.setVisibility(View.VISIBLE);
@@ -135,6 +138,8 @@ public class DownloadImageActivity
             // that contains the path to the image file, and set this
             // as the result of the Activity.
             // TODO -- you fill in here.
+            Uri pathToImage = DownloadUtils.downloadImage();
+            setActivityResult(pathToImage);
 
             // Create and start a new thread to Download and process
             // the image.
@@ -157,6 +162,7 @@ public class DownloadImageActivity
         // initialization/implementation and then log which lifecycle
         // hook method is being called.
         // TODO - you fill in here.
+        super.onStop();
 
         // Dismiss the progress bar.
         mLoadingProgressBar.setVisibility(View.INVISIBLE);
