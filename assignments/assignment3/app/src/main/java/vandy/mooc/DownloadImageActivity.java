@@ -63,6 +63,7 @@ public class DownloadImageActivity
 
         // Set the default layout.
         // TODO -- you fill in here.
+        // linked with associated xml
         setContentView(R.layout.download_image_activity);
 
         // Store the ProgressBar in a field for fast access.
@@ -138,6 +139,7 @@ public class DownloadImageActivity
             // that contains the path to the image file, and set this
             // as the result of the Activity.
             // TODO -- you fill in here.
+            // Creates new runnable to be run in a new thread
             final DownloadRunnable downImg = new DownloadRunnable();
             new Thread(downImg).start();
 
@@ -204,10 +206,13 @@ public class DownloadImageActivity
         // for more discussion about this topic.
         public void run() {
             final Uri imageUri = getIntent().getData();
-            Uri downUri = DownloadUtils.downloadImage(DownloadImageActivity.this,
+            // Downloads image using DownloadUtils.downloadImage
+            Uri pathToImage = DownloadUtils.downloadImage(DownloadImageActivity.this,
                     imageUri);
-            setActivityResult(downUri);
+            // setActivityResult, if RESULT_OK, creates new intent with pathToImage
+            setActivityResult(pathToImage);
 
+            // HaMeR calls finish in UI thread
             runOnUiThread(new Runnable() {
                 public void run() {
                     finish();

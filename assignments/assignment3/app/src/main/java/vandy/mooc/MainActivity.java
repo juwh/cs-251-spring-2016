@@ -72,11 +72,13 @@ public class MainActivity
 
         // Set the default layout.
         // TODO -- you fill in here.
+        // linked with associated xml layout
         setContentView(R.layout.activity_main);
         
         // Cache the EditText that holds the urls entered by the
         // user (if any).
         // TODO -- you fill in here.
+        // refers to UI element content (found via url id in xml)
         mUrlEditText = (EditText) findViewById(R.id.url);
     }
 
@@ -112,6 +114,8 @@ public class MainActivity
             // Intent and start an Activity that downloads an image
             // from the URL given by the user.
             // TODO - you fill in here.
+            // Uri parameter created via getUrl which takes current
+            // input in UrlEditText and parses to Uri
             startDownloadImageActivity(getUrl());
 
         } catch (Exception e) {
