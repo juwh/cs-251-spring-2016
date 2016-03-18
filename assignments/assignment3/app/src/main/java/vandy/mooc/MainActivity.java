@@ -114,7 +114,7 @@ public class MainActivity
             // Intent and start an Activity that downloads an image
             // from the URL given by the user.
             // TODO - you fill in here.
-            // Uri parameter created via getUrl which takes current
+            // Uri parameter created via getUrl which takes the current
             // input in UrlEditText and parses to Uri
             startDownloadImageActivity(getUrl());
 

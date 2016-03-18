@@ -10,9 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4984e6c1-2b44-43c0-8da8-28b10fbc2666" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/vandy/mooc/DownloadImageActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/vandy/mooc/DownloadImageActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/vandy/mooc/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/vandy/mooc/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="assignment3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,8 +47,8 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/vandy/mooc/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2892768">
-              <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.62593514">
+              <caret line="116" column="63" selection-start-line="116" selection-start-column="63" selection-end-line="116" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -2310,8 +2308,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/vandy/mooc/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2892768">
-          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.62593514">
+          <caret line="116" column="63" selection-start-line="116" selection-start-column="63" selection-end-line="116" selection-end-column="63" />
           <folding />
         </state>
       </provider>
