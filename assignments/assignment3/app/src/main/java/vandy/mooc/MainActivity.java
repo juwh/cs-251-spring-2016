@@ -189,6 +189,7 @@ public class MainActivity
         // the image.
         // TODO -- you fill in here, replacing "null" with the proper
         // code.
+	// @@ could you please be more concise?
         pathToImageFile = "file://" + pathToImageFile;
         Intent galIntent = new Intent(Intent.ACTION_VIEW);
         galIntent.setDataAndType(Uri.parse(pathToImageFile), "image/*");
