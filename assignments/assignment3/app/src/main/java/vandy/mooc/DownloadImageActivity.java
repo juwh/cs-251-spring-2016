@@ -142,7 +142,7 @@ public class DownloadImageActivity
             // Creates new runnable to be run in a new thread
             final DownloadRunnable downImg = new DownloadRunnable();
             new Thread(downImg).start();
-
+	    // @@ Please don't comment this out:
             /*
             // Create and start a new thread to Download and process
             // the image.
