@@ -139,17 +139,16 @@ public class DownloadImageActivity
             // that contains the path to the image file, and set this
             // as the result of the Activity.
             // TODO -- you fill in here.
-            // Creates new runnable to be run in a new thread
-            final DownloadRunnable downImg = new DownloadRunnable();
-            new Thread(downImg).start();
+            // Creates new runnable to be run in thread
+            thread = new Thread(new DownloadRunnable());
+
+
 	    // @@ Please don't comment this out:
-            /*
             // Create and start a new thread to Download and process
             // the image.
             mRetainedFragmentManager.put(THREAD,
                     thread);
             thread.start();
-            */
 
         } else {
             Log.d(TAG,
@@ -207,10 +206,9 @@ public class DownloadImageActivity
         public void run() {
             final Uri imageUri = getIntent().getData();
             // Downloads image using DownloadUtils.downloadImage
-            Uri pathToImage = DownloadUtils.downloadImage(DownloadImageActivity.this,
-                    imageUri);
             // setActivityResult, if RESULT_OK, creates new intent with pathToImage
-            setActivityResult(pathToImage);
+            setActivityResult(DownloadUtils.downloadImage(DownloadImageActivity.this,
+                    imageUri));
 
             // HaMeR calls finish in UI thread
             runOnUiThread(new Runnable() {

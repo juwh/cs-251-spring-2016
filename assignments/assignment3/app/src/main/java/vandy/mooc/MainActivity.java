@@ -190,10 +190,9 @@ public class MainActivity
         // TODO -- you fill in here, replacing "null" with the proper
         // code.
 	// @@ could you please be more concise?
-        pathToImageFile = "file://" + pathToImageFile;
-        Intent galIntent = new Intent(Intent.ACTION_VIEW);
-        galIntent.setDataAndType(Uri.parse(pathToImageFile), "image/*");
-        return galIntent;
+        // converted to single line
+        return new Intent(Intent.ACTION_VIEW).setDataAndType(
+                Uri.parse("file://" + pathToImageFile), "image/*");
     }
 
     /**
