@@ -140,7 +140,8 @@ public class DownloadImageActivity
             // as the result of the Activity.
             // TODO -- you fill in here.
             // Creates new runnable to be run in thread
-            thread = new Thread(new DownloadRunnable());
+            final DownloadRunnable downRun = new DownloadRunnable();
+            thread = new Thread(downRun);
 
 
 	    // @@ Please don't comment this out:
