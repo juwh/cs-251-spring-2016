@@ -145,6 +145,7 @@ public class DownloadImageActivity
 
 
 	    // @@ Please don't comment this out:
+            // uncommented
             // Create and start a new thread to Download and process
             // the image.
             mRetainedFragmentManager.put(THREAD,
