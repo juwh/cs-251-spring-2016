@@ -206,6 +206,7 @@ public class DownloadImageActivity
         // http://stackoverflow.com/questions/20412871/is-it-safe-to-finish-an-android-activity-from-a-background-thread
         // for more discussion about this topic.
         public void run() {
+            // @@ HS here you should use the RetainedFragmentManager to access the URI -2
             final Uri imageUri = getIntent().getData();
             // Downloads image using DownloadUtils.downloadImage
             // setActivityResult, if RESULT_OK, creates new intent with pathToImage
