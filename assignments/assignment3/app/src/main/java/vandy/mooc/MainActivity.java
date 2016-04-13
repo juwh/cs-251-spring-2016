@@ -146,6 +146,7 @@ public class MainActivity
                 // by passing in the path to the downloaded image
                 // file.
                 // TODO -- you fill in here.
+                // @@ HS should be final -1
                 Intent galIntent = makeGalleryIntent(data.getData().toString());
 
                 // Allow user to click the download button again.
