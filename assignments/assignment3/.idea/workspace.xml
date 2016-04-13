@@ -10,83 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4984e6c1-2b44-43c0-8da8-28b10fbc2666" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/raw/dougs.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/drawable-hdpi/ic_delete_white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/drawable-hdpi/ic_download.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/drawable-hdpi/loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/AndroidManifest.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/Assignment_4a.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/utils/BitmapUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/common/ContextView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/view/DisplayImagesActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/view/DownloadImagesActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/androidTest/java/vandy/mooc/DownloadImageViewer/test/DownloadImagesActivityBaseTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/model/services/DownloadImagesStartedService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/test/java/mooc/vandy/assignment_4a/ExampleUnitTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/view/ui/FloatingActionButton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/common/GenericActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/common/GenericAsyncTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/common/GenericAsyncTaskOps.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/common/GenericPresenter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/utils/loader/ImageLoader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/utils/loader/ImageLoaderThreadPool.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/utils/loader/ImageLoaderWorkOrder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/utils/loader/ImageLoaderWorkResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/model/ImageModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/model/ImageModelImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/model/ImageModelImplStartedService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/presenter/ImagePresenter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/utils/loader/ImageViewHolder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/common/LifecycleLoggingActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/common/LifecycleLoggingService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/MVP.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/common/ModelOps.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/utils/NetUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/common/PresenterOps.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/model/datamodel/ReplyMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/model/datamodel/RequestMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/model/datamodel/RequestReplyMessageBase.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/common/RetainedFragmentManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/androidTest/java/vandy/mooc/DownloadImageViewer/test/Test1_MalformedUrl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/androidTest/java/vandy/mooc/DownloadImageViewer/test/Test2_SingleInvalidUrl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/androidTest/java/vandy/mooc/DownloadImageViewer/test/Test3_MultipleInvalidUrls.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/androidTest/java/vandy/mooc/DownloadImageViewer/test/Test4_SingleValidUrl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/androidTest/java/vandy/mooc/DownloadImageViewer/test/Test5_MultipleValidUrls.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/androidTest/java/vandy/mooc/DownloadImageViewer/test/Test6_MultipleValidAndInvalidUrls.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/androidTest/java/vandy/mooc/DownloadImageViewer/test/Test7_MultipleValidUrlsWithScreenRotations.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/androidTest/java/vandy/mooc/DownloadImageViewer/test/TestUrlsHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/common/Utils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/java/vandy/mooc/view/ViewPagerActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/app.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/assignment4a.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/values/attrs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/values/colors.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/values/dimens.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/values-w820dp/dimens.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/layout/display_images_activity.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/layout/download_images_activity.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/layout/fragment_collection_detail.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/gradle.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/layout/image_detail_swipe_activity.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/proguard-rules.pro" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/menu/service_menu.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/settings.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment4a/app/src/main/res/values/strings.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_0.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ex/DynamicBinding/src/DynamicBindingTest.java" afterPath="$PROJECT_DIR$/../../ex/DynamicBinding/src/DynamicBindingTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/vandy/mooc/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/vandy/mooc/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ex/MusicPlayingService/src/course/examples/MusicActivity.java" afterPath="$PROJECT_DIR$/../../ex/MusicPlayingService/src/course/examples/MusicActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ex/MusicPlayingService/src/course/examples/MusicService.java" afterPath="$PROJECT_DIR$/../../ex/MusicPlayingService/src/course/examples/MusicService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="assignment3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1855,20 +1779,20 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298193" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32751092" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943925" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2160229" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37198794" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44161358" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32751092" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout>
