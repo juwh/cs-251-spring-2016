@@ -54,7 +54,9 @@ public class DownloadImagesStartedService
         // containing the various parameters passed into this method
         // and (2) storing this RequestMessage as a Message "extra" in
         // the Intent.
-        Intent intent = new Intent(context, DownloadImagesStartedService.class);
+        // makes intent and RequestMessage with parameters which is added as
+        // extra in the intent
+        final Intent intent = new Intent(context, DownloadImagesStartedService.class);
         RequestMessage message = RequestMessage.makeRequestMessage(requestCode,
                 url, directoryPathname, new Messenger(downloadHandler));
         intent.putExtra(REQUEST_MESSAGE, message.getMessage());
@@ -77,6 +79,7 @@ public class DownloadImagesStartedService
 
         // Extract the URL for the image to download.
         // TODO -- you fill in here.
+        // primarily uses get functions and NetUtils' download function
         Uri url = requestMessage.getImageURL();
 
         // Download the requested image.
@@ -110,6 +113,7 @@ public class DownloadImagesStartedService
         // Call the makeReplyMessage() factory method to create
         // Message.
         // TODO -- you fill in here.
+        // create replyMessage to go from service to activity
         ReplyMessage replyMessage =
                 ReplyMessage.makeReplyMessage(pathToImageFile,
                         url, requestCode);
@@ -119,7 +123,7 @@ public class DownloadImagesStartedService
             // ImageModelImpl's Handler via the Messenger.
             // TODO -- you fill in here.
             messenger.send(replyMessage.getMessage());
-            //throw new RemoteException();
+            throw new RemoteException();
         } catch (RemoteException e) {
             Log.e(getClass().getName(),
                   "Exception while sending reply message back to Activity.",

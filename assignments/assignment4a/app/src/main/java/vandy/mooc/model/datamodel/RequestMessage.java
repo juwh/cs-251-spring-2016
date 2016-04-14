@@ -41,6 +41,7 @@ public class RequestMessage extends RequestReplyMessageBase {
 
         // Set replyMessenger into the Message's replyTo field.
         // TODO -- you fill in here.
+        // Bundle actions below are filled via MessageBase methods
         requestMessage.setMessenger(replyMessenger);
 
         // Create a new Bundle and set it as the "data" for the
