@@ -47,6 +47,7 @@ public class RequestMessage extends RequestReplyMessageBase {
         // Create a new Bundle and set it as the "data" for the
         // RequestMessage.
         // TODO -- you fill in here.
+// @@ Could you be more concise?
         Bundle data = new Bundle();
         requestMessage.setData(data);
 
