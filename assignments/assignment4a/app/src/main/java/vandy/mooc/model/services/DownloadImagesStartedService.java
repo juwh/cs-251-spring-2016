@@ -80,11 +80,11 @@ public class DownloadImagesStartedService
         // Extract the URL for the image to download.
         // TODO -- you fill in here.
         // primarily uses get functions and NetUtils' download function
-        Uri url = requestMessage.getImageURL();
+        final Uri url = requestMessage.getImageURL();
 
         // Download the requested image.
         // TODO -- you fill in here.
-        Uri pathToImageFile = NetUtils.downloadImage(
+        final Uri pathToImageFile = NetUtils.downloadImage(
                 DownloadImagesStartedService.this, url,
                 requestMessage.getDirectoryPathname());
 
@@ -123,7 +123,6 @@ public class DownloadImagesStartedService
             // ImageModelImpl's Handler via the Messenger.
             // TODO -- you fill in here.
             messenger.send(replyMessage.getMessage());
-            throw new RemoteException();
         } catch (RemoteException e) {
             Log.e(getClass().getName(),
                   "Exception while sending reply message back to Activity.",
