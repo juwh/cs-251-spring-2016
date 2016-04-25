@@ -48,8 +48,7 @@ public class RequestMessage extends RequestReplyMessageBase {
         // RequestMessage.
         // TODO -- you fill in here.
 // @@ Could you be more concise?
-        Bundle data = new Bundle();
-        requestMessage.setData(data);
+        requestMessage.setData(new Bundle());
 
         // Set the URL to the image file into the Bundle.
         // TODO -- you fill in here.

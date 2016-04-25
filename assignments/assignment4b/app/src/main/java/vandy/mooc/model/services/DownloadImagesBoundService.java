@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import vandy.mooc.common.LifecycleLoggingService;
+import vandy.mooc.utils.NetUtils;
 import vandy.mooc.model.datamodel.ReplyMessage;
 import vandy.mooc.model.datamodel.RequestMessage;
 import android.content.Context;
@@ -86,6 +87,7 @@ public class DownloadImagesBoundService
 
 	    // Get the reply Messenger.
 	    // TODO -- you fill in here.
+		// message components extracted via requestMessage methods
 		final Messenger messenger = requestMessage.getMessenger();
 
 	    // Get the URL associated with the Message.
@@ -115,9 +117,10 @@ public class DownloadImagesBoundService
 	
 			// Download and store the requested image.
 			// TODO -- you fill in here.
+				// utilized NetUtils download static function
 				final Uri pathToImageFile =
-						ImageModelImplBoundService.startDownload(
-								url, directoryPathname);
+						NetUtils.downloadImage(
+								null, url, directoryPathname);
 
 			// Send the path to the image file, url, and
 			// requestCode back to the Activity via the
@@ -130,6 +133,7 @@ public class DownloadImagesBoundService
 	    // Execute the downloadImageAndReply Runnable to download
 	    // the image and reply.
 	    // TODO -- you fill in here.
+		// starts Runnable in separate thread process
 		mExecutorService.execute(downloadImageAndReply);
 	}
 
@@ -144,18 +148,19 @@ public class DownloadImagesBoundService
 	    // Call the makeReplyMessage() factory method to create
 	    // Message.
 	    // TODO -- you fill in here.
-		ReplyMessage replyMessage =
-				ReplyMessage.makeReplyMessage(pathToImageFile,
-						url, requestCode);
+		// import ReplyMessage to call static factory method
+		final ReplyMessage message =
+				ReplyMessage.makeReplyMessage(pathToImageFile, url, requestCode);
 	    try {
 		Log.d(TAG,
 		      "sending "
 		      + pathToImageFile
 		      + " back to the MainActivity");
-		throw new RemoteException(); // remove this
+		// throw new RemoteException(); // remove this
 		// Send the replyMessage back to the Activity.
 		// TODO -- you fill in here.
-			messenger.send(replyMessage.getMessage());
+			// send similar to startedService
+			messenger.send(message.getMessage());
 	    } catch (RemoteException e) {
 		Log.e(getClass().getName(),
 		      "Exception while sending reply message back to Activity.",
@@ -169,6 +174,7 @@ public class DownloadImagesBoundService
 	public void shutdown() {
 	    // Immediately shutdown the ExecutorService.
 	    // TODO -- you fill in here.
+		//simply call shutdown function for Executor
 		mExecutorService.shutdown();
 	}
     }
@@ -192,11 +198,13 @@ public class DownloadImagesBoundService
         // Create a RequestHandler used to handle request Messages
         // sent from an Activity.
     	// TODO -- you fill in here.
+		// create a new RequestHandler for this space
 		mRequestHandler = new RequestHandler(
 				DownloadImagesBoundService.this);
 
         // Create a Messenger that encapsulates the RequestHandler.
     	// TODO -- you fill in here.
+		// encapsulate the Handler in a messenger to be sent
 		mRequestMessenger = new Messenger(mRequestHandler);
     }
 
@@ -222,6 +230,7 @@ public class DownloadImagesBoundService
 
         // Shutdown the RequestHandler.
     	// TODO -- you fill in here.
+		// simply utilize shutdown function
 		mRequestHandler.shutdown();
     }
 }

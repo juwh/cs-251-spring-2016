@@ -44,8 +44,7 @@ public class ReplyMessage extends RequestReplyMessageBase {
         // create Bundle and set as data of ReplyMessage
 	// @@ Could you be more concise?
 // @@ Could you be more concise?
-        Bundle data = new Bundle()
-        replyMessage.setData(data);
+        replyMessage.setData(new Bundle());
 
         // Set the URL to the image file into the Bundle.
         // TODO -- you fill in here.

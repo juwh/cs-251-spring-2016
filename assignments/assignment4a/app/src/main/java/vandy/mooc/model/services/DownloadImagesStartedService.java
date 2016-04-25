@@ -56,8 +56,8 @@ public class DownloadImagesStartedService
         // the Intent.
         // makes intent and RequestMessage with parameters which is added as
         // extra in the intent
-        final Intent intent = new Intent(context, DownloadImagesStartedService.class);
-        RequestMessage message = RequestMessage.makeRequestMessage(requestCode,
+        Intent intent = new Intent(context, DownloadImagesStartedService.class);
+        final RequestMessage message = RequestMessage.makeRequestMessage(requestCode,
                 url, directoryPathname, new Messenger(downloadHandler));
         intent.putExtra(REQUEST_MESSAGE, message.getMessage());
         return intent;
@@ -81,7 +81,7 @@ public class DownloadImagesStartedService
         // TODO -- you fill in here.
         // primarily uses get functions and NetUtils' download function
 	// @@ These should be final:
-        Uri url = requestMessage.getImageURL();
+        final Uri url = requestMessage.getImageURL();
 
         // Download the requested image.
         // TODO -- you fill in here.
@@ -91,11 +91,11 @@ public class DownloadImagesStartedService
 
         // Extract the request code.
         // TODO -- you fill in here.
-        int requestCode = requestMessage.getRequestCode();
+        final int requestCode = requestMessage.getRequestCode();
 
         // Extract the Messenger stored in the RequestMessage.
         // TODO -- you fill in here.
-        Messenger messenger = requestMessage.getMessenger();
+        final Messenger messenger = requestMessage.getMessenger();
 
         // Send the path to the image file back to the
         // MainActivity via the messenger.
@@ -115,7 +115,7 @@ public class DownloadImagesStartedService
         // Message.
         // TODO -- you fill in here.
         // create replyMessage to go from service to activity
-        ReplyMessage replyMessage =
+        final ReplyMessage replyMessage =
                 ReplyMessage.makeReplyMessage(pathToImageFile,
                         url, requestCode);
         
@@ -125,7 +125,6 @@ public class DownloadImagesStartedService
             // TODO -- you fill in here.
             messenger.send(replyMessage.getMessage());
 // @@ Why did you leave this in?
-            throw new RemoteException();
         } catch (RemoteException e) {
             Log.e(getClass().getName(),
                   "Exception while sending reply message back to Activity.",
